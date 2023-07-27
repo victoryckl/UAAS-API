@@ -15,7 +15,7 @@ app.use(loggerMiddleware)
 app.use(errorHandler)
 
 // middlewares
-// koa-bodyparser接受不到body，改用koaBody，并且发送是使用form-data格式
+// koa-bodyparser接受不到body，改用koa-body，并且使用form-data格式
 // app.use(bodyParser())
 
 app.use(
