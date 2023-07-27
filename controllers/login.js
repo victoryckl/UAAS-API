@@ -1,3 +1,4 @@
+const { log } = require("console")
 const path = require("path")
 const SCHOOL_CODE = require("../util/config")("SCHOOL_CODE")
 const servicePath = `${path.resolve(__dirname, "../services")}/${SCHOOL_CODE}`
@@ -29,6 +30,7 @@ const loginVerifyCode = async (ctx, next) => {
 
 // 登录（不需要验证码的情况）
 const login = async (ctx, next) => {
+  console.log(ctx.request.body)
   const { stuId, password } = ctx.request.body
   if (!stuId || !password) {
     ctx.errMsg = "学号和密码不能为空"

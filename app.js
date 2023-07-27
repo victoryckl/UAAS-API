@@ -1,6 +1,7 @@
 require("dotenv").config()
 const Koa = require("koa")
 const bodyParser = require("koa-bodyparser")
+const { koaBody } = require('koa-body');    //引入koa-body
 const helmet = require("koa-helmet")
 
 const { loggerMiddleware } = require("./middlewares/logger")
@@ -14,7 +15,15 @@ app.use(loggerMiddleware)
 app.use(errorHandler)
 
 // middlewares
-app.use(bodyParser())
+// koa-bodyparser接受不到body，改用koaBody，并且发送是使用form-data格式
+// app.use(bodyParser())
+
+app.use(
+    koaBody({
+        multipart: true,    //解析多个文件
+    })
+)
+
 app.use(helmet())
 
 // routers
